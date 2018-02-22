@@ -100,6 +100,7 @@ func (d *Decoder) Start() {
 // Stop stops the Decoder
 func (d *Decoder) Stop() {
 	close(d.InputChan)
+	close(d.OutputChan)
 }
 
 // run lets the Decoder handle data coming from InputChan
