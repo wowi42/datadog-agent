@@ -286,8 +286,8 @@ shared_examples_for "a running Agent with no errors" do
     else
       conf_path = "#{ENV['ProgramData']}\\Datadog\\datadog.yaml"
     end
-    open(conf_path, 'w') do |f|
-      f.puts "apm_config:\n  enabled: false"
+    open(conf_path, 'a') do |f|
+      f.puts "\napm_config:\n  enabled: false"
     end
     output = restart
     if os != :windows
