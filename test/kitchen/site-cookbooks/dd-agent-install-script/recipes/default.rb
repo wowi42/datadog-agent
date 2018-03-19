@@ -52,4 +52,5 @@ execute 'run agent install script' do
     bash install-script
     sleep 10
   EOF
+  live_stream true
 end
