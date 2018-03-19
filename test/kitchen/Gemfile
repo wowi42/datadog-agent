@@ -1,0 +1,30 @@
+source 'https://rubygems.org'
+gem "berkshelf"
+gem "chef"
+gem "rake"
+# there is an ancient psych bug: https://github.com/dtao/safe_yaml/issues/80
+# It has been fixed in a later version of kitchen, but kitchen has not yet been updated
+gem "psych", "~> 2.2.2"
+gem "net-ssh", '>= 4.2.0'
+
+group :development do
+  gem "travis-lint"
+  gem "guard"
+  gem "guard-foodcritic"
+  gem "guard-rspec"
+end
+
+group :test do
+  gem "tailor" # Ruby style
+  gem "foodcritic" # Lint testing
+end
+
+gem "test-kitchen", :group => [:vagrant, :azure]
+
+group :vagrant do
+  gem 'kitchen-vagrant'
+end
+
+group :azure do
+  gem "kitchen-azurerm", '~> 0.13.0'
+end

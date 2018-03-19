@@ -244,7 +244,7 @@ shared_examples_for "a running Agent with no errors" do
     if os != :windows
       system('command -v systemctl 2>&1 > /dev/null && sleep 15')
     else
-      sleep 15
+      sleep 50
     end
 
     json_info_output = json_info
