@@ -244,9 +244,9 @@ shared_examples_for "a running Agent with no errors" do
     # sleep a few seconds to let the collector finish its first run
     # This seems to happen on windows, too
     if os != :windows
-      system('command -v systemctl 2>&1 > /dev/null && sleep 30')
+      system('command -v systemctl 2>&1 > /dev/null && sleep 60')
     else
-      sleep 30
+      sleep 60
     end
 
     json_info_output = json_info
