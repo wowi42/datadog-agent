@@ -238,13 +238,15 @@ shared_examples_for "a running Agent with no errors" do
   end
 
   it 'has running checks' do
+
+
     # On systems that use systemd (on which the `start` script returns immediately)
     # sleep a few seconds to let the collector finish its first run
     # This seems to happen on windows, too
     if os != :windows
-      system('command -v systemctl 2>&1 > /dev/null && sleep 15')
+      system('command -v systemctl 2>&1 > /dev/null && sleep 30')
     else
-      sleep 50
+      sleep 30
     end
 
     json_info_output = json_info
