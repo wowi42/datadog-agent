@@ -76,7 +76,7 @@ func (le *LeaderEngine) newElection(electionId, namespace string, ttl time.Durat
 			log.Infof("New leader %q", identity)
 		},
 		OnStartedLeading: func(stop <-chan struct{}) {
-			log.Infof("Starting leading as %q ...", le.HolderIdentity)
+			log.Infof("Started leading as %q ...", le.HolderIdentity)
 		},
 		// OnStoppedLeading shouldn't be called unless the election is lost
 		OnStoppedLeading: func() {
