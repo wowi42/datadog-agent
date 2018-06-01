@@ -73,17 +73,17 @@ func (le *LeaderEngine) newElection(electionId, namespace string, ttl time.Durat
 			le.currentHolderMutex.Lock()
 			le.currentHolderIdentity = identity
 			le.currentHolderMutex.Unlock()
-			log.Infof("Currently new leader %q", identity)
+			log.Infof("New leader %q", identity)
 		},
 		OnStartedLeading: func(stop <-chan struct{}) {
-			log.Infof("Leading as %q ...", le.HolderIdentity)
+			log.Infof("Starting leading as %q ...", le.HolderIdentity)
 		},
 		// OnStoppedLeading shouldn't be called unless the election is lost
 		OnStoppedLeading: func() {
 			le.currentHolderMutex.Lock()
 			le.currentHolderIdentity = ""
 			le.currentHolderMutex.Unlock()
-			log.Warnf("Stop leading %q", le.HolderIdentity)
+			log.Warnf("Stopped leading %q", le.HolderIdentity)
 		},
 	}
 

@@ -48,7 +48,7 @@ type LeaderEngine struct {
 	LeaseDuration   time.Duration
 	LeaseName       string
 	LeaderNamespace string
-	coreClient      *corev1.CoreV1Client
+	coreClient      corev1.CoreV1Interface
 	leaderElector   *leaderelection.LeaderElector
 
 	currentHolderIdentity string
@@ -155,7 +155,11 @@ func (le *LeaderEngine) EnsureLeaderElectionRuns() error {
 	le.once.Do(
 		func() {
 			log.Infof("Starting Leader Election process for %q ...", le.HolderIdentity)
-			go le.leaderElector.Run()
+			go func() {
+				for {
+					le.leaderElector.Run()
+				}
+			}()
 		},
 	)
 
